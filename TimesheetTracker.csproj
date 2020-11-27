@@ -128,6 +128,7 @@
       <DependentUpon>Feature1.feature</DependentUpon>
     </Content>
     <Content Include="Layouts\TimesheetTracker\JS\ValidateTimesheetData.js" />
+    <Content Include="Readme.txt" />
     <Content Include="WebPart\EditTimesheet\EditTimesheetUserControl.ascx" />
     <Content Include="WebPart\EditTimesheet\Elements.xml" />
     <Content Include="WebPart\ListTimesheet\Elements.xml" />
