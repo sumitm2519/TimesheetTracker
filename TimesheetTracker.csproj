@@ -1,0 +1,146 @@
+﻿<Project ToolsVersion="16.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DEB22118-C0AB-4636-A9E8-45963EF8902A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TimesheetTracker</RootNamespace>
+    <AssemblyName>TimesheetTracker</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetOfficeVersion>16.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <MinimumOfficeToolsVersion>14.0</MinimumOfficeToolsVersion>
+    <SandboxedSolution>False</SandboxedSolution>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helper\Common.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebPart\EditTimesheet\EditTimesheet.cs" />
+    <Compile Include="WebPart\EditTimesheet\EditTimesheetUserControl.ascx.cs">
+      <DependentUpon>EditTimesheetUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPart\EditTimesheet\EditTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>EditTimesheetUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebPart\ListTimesheet\ListTimesheet.cs" />
+    <Compile Include="WebPart\ListTimesheet\ListTimesheetUserControl.ascx.cs">
+      <DependentUpon>ListTimesheetUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPart\ListTimesheet\ListTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>ListTimesheetUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebPart\NewTimesheet\NewTimesheet.cs" />
+    <Compile Include="WebPart\NewTimesheet\NewTimesheetUserControl.ascx.cs">
+      <DependentUpon>NewTimesheetUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPart\NewTimesheet\NewTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>NewTimesheetUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebPart\ViewTimesheet\ViewTimesheet.cs" />
+    <Compile Include="WebPart\ViewTimesheet\ViewTimesheetUserControl.ascx.cs">
+      <DependentUpon>ViewTimesheetUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPart\ViewTimesheet\ViewTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>ViewTimesheetUserControl.ascx.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{d53ebe02-b65a-4414-8687-9a2e4dc6fabd}</FeatureId>
+    </None>
+    <None Include="key.snk" />
+    <None Include="Layouts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8e7dbaba-2c89-4779-9f3b-d842265bc090}</SharePointProjectItemId>
+    </None>
+    <None Include="Package\Package.package">
+      <PackageId>{a88a330c-b235-45ee-baba-a593d1c36e65}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="WebPart\EditTimesheet\EditTimesheet.webpart" />
+    <None Include="WebPart\EditTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{52cca91c-1018-417a-b2b2-d580ceb1be3e}</SharePointProjectItemId>
+    </None>
+    <None Include="WebPart\ListTimesheet\ListTimesheet.webpart" />
+    <None Include="WebPart\ListTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{53cd9c44-9c4a-437b-aeaa-0c65c0484310}</SharePointProjectItemId>
+    </None>
+    <None Include="WebPart\NewTimesheet\NewTimesheet.webpart" />
+    <None Include="WebPart\NewTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{678162e1-c61b-41d3-9dad-1d91d384b853}</SharePointProjectItemId>
+    </None>
+    <None Include="WebPart\ViewTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5486c3ca-9e16-457f-91da-b94e51bb33e4}</SharePointProjectItemId>
+    </None>
+    <None Include="WebPart\ViewTimesheet\ViewTimesheet.webpart" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Layouts\TimesheetTracker\JS\ValidateTimesheetData.js" />
+    <Content Include="WebPart\EditTimesheet\EditTimesheetUserControl.ascx" />
+    <Content Include="WebPart\EditTimesheet\Elements.xml" />
+    <Content Include="WebPart\ListTimesheet\Elements.xml" />
+    <Content Include="WebPart\ListTimesheet\ListTimesheetUserControl.ascx" />
+    <Content Include="WebPart\NewTimesheet\Elements.xml" />
+    <Content Include="WebPart\NewTimesheet\NewTimesheetUserControl.ascx" />
+    <Content Include="WebPart\ViewTimesheet\Elements.xml" />
+    <Content Include="WebPart\ViewTimesheet\ViewTimesheetUserControl.ascx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

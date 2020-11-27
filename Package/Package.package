@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="a88a330c-b235-45ee-baba-a593d1c36e65" solutionId="a88a330c-b235-45ee-baba-a593d1c36e65" resetWebServer="false" sharePointProductVersion="16.0" name="TimesheetTracker" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="d53ebe02-b65a-4414-8687-9a2e4dc6fabd" />
+  </features>
+  <projectItems>
+    <projectItemReference itemId="8e7dbaba-2c89-4779-9f3b-d842265bc090" />
+  </projectItems>
+</package>
