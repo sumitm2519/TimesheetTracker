@@ -133,6 +133,7 @@
     <None Include="Scripts\umd\popper.js.flow" />
     <None Include="Scripts\umd\popper.js.map" />
     <None Include="Scripts\umd\popper.min.js.map" />
+    <None Include="TestPlan\TestPlan.xlsx" />
     <None Include="WebPart\EditTimesheet\EditTimesheet.webpart" />
     <None Include="WebPart\EditTimesheet\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{52cca91c-1018-417a-b2b2-d580ceb1be3e}</SharePointProjectItemId>
