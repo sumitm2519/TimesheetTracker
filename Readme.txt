@@ -26,13 +26,14 @@ Columns :
 
 ======================================== Script Start =======================================================
 
-<div align="right"><h2><b>Welcome, <div><label id="lblUsername"></label></div></b></h2></div>
+<div align="right"><h5><b>Welcome, <label id="lblUsername"></label></b></h5></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
 
 $(document).ready(function () {
-
+ 
 var userid = _spPageContextInfo.userId;
 
 function GetCurrentUser() {
@@ -63,5 +64,35 @@ function onError(error) {
 GetCurrentUser();
 
 });</script>
+<script language="javascript">
+
+_spBodyOnLoadFunctionNames.push("HideBrandingsuite");
+
+function HideBrandingsuite()
+
+{
+
+document.getElementById('pageTitle').style.visibility = 'hidden';
+
+} 
+
+</script>
 
 ======================================== Script End =======================================================
+
+
+7) Edit "EditTimesheet.aspx", "ViewTimesheet.aspx", "NewTimesheet.aspx" pages and add content web part. Add below script in content web part to hide page title.
+
+<script language="javascript">
+
+_spBodyOnLoadFunctionNames.push("HideBrandingsuite");
+
+function HideBrandingsuite()
+
+{
+
+document.getElementById('pageTitle').style.visibility = 'hidden';
+
+} 
+
+</script>

@@ -20,6 +20,16 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         }
 
         /// <summary>
+        /// Cancel button click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Page.Response.Redirect(SPContext.Current.Site.Url + "/SitePages/Home.aspx");
+        }
+
+        /// <summary>
         /// Submit button click event
         /// </summary>
         /// <param name="sender"></param>
@@ -71,17 +81,6 @@ namespace TimesheetTracker.WebPart.NewTimesheet
             {
                 throw ex;
             }
-
-        }
-
-        /// <summary>
-        /// Cancel button click event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Page.Response.Redirect(SPContext.Current.Site.Url + "/SitePages/Home.aspx");
         }
     }
 }

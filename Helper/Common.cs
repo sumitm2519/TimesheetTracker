@@ -30,7 +30,8 @@ namespace TimesheetTracker.Helper
                 double totalHours = 0;
                 foreach (SPListItem item in itemColl)
                 {
-                    totalHours += Convert.ToDouble(item["Hours"]);
+                    if (!item.ID.Equals(timesheetId))
+                        totalHours += Convert.ToDouble(item["Hours"]);
                 }
 
                 if (totalHours >= 8)

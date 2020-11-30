@@ -15,6 +15,15 @@ namespace TimesheetTracker.WebPart.NewTimesheet
     {
 
         /// <summary>
+        /// lblPageTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPageTitle;
+
+        /// <summary>
         /// dtDate control.
         /// </summary>
         /// <remarks>
@@ -57,7 +66,7 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.LinkButton btnSubmit;
 
         /// <summary>
         /// btnCancel control.
@@ -66,6 +75,6 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.LinkButton btnCancel;
     }
 }

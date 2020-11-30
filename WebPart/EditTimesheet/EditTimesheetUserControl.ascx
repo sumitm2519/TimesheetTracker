@@ -6,29 +6,46 @@
 <%@ Import Namespace="Microsoft.SharePoint" %>
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditTimesheetUserControl.ascx.cs" Inherits="TimesheetTracker.WebPart.EditTimesheet.EditTimesheetUserControl" %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <table>
+    <tr>
+        <td align="left">
+            <h4>
+                <asp:Label ID="lblPageTitle" runat="server"></asp:Label></h4>
+        </td>
+    </tr>
     <tr>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td>Timesheet Date :
+        <td>Timesheet Date
         </td>
         <td>
             <SharePoint:DateTimeControl ID="dtDate" runat="server" DateOnly="true" />
         </td>
     </tr>
     <tr>
-        <td>Hours :
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Hours
         </td>
         <td>
-            <asp:TextBox ID="txtHours" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtHours" runat="server" CssClass="form-control"></asp:TextBox>
         </td>
     </tr>
     <tr>
-        <td>Category :
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Category
         </td>
         <td>
-            <asp:DropDownList ID="ddlCategory" runat="server">
+            <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control">
                 <asp:ListItem Text="-Select-" Value="0"></asp:ListItem>
                 <asp:ListItem Text="Billable" Value="Billable"></asp:ListItem>
                 <asp:ListItem Text="Non-Billable" Value="Non-Billable"></asp:ListItem>
@@ -38,10 +55,13 @@
         </td>
     </tr>
     <tr>
-        <td>Description :
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top;">Description
         </td>
         <td>
-            <asp:TextBox runat="server" ID="txtDescription" TextMode="MultiLine" Width="500px" Height="100px"></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtDescription" TextMode="MultiLine" Width="500px" Height="100px" CssClass="form-control input-lg"></asp:TextBox>
         </td>
     </tr>
     <tr>
@@ -50,16 +70,29 @@
     <tr>
         <td>&nbsp;</td>
         <td>
-            <asp:Button runat="server" Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click" OnClientClick="return ValidateSubmit();" />&nbsp;<asp:Button runat="server" Text="Cancel" ID="btnCancel" OnClick="btnCancel_Click" />
+            <asp:LinkButton CssClass="btn btn-primary" runat="server" Text="Submit" ID="btnSubmit" OnClick="btnSubmit_Click" OnClientClick="return ValidateSubmit();"></asp:LinkButton>
+            &nbsp;&nbsp;<asp:LinkButton CssClass="btn btn-primary" runat="server" Text="Delete" ID="btnDelete" OnClick="btnDelete_Click"></asp:LinkButton>
+            &nbsp;&nbsp;<asp:LinkButton CssClass="btn btn-primary" runat="server" Text="Cancel" ID="btnCancel" OnClick="btnCancel_Click"></asp:LinkButton>
         </td>
     </tr>
 </table>
 <script type="text/javascript">
     function ValidateSubmit() {
+        var timesheetDate = $('input[id*="dtDate"]').val();
+        if (timesheetDate == '') {
+            alert("Enter timesheet date.");
+            return false;
+        }
+        else {
+            var date_regex1 = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+            var date_regex2 = /^([1-9]|1[0-2])\/([1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+            if (!(date_regex1.test(timesheetDate)) && !(date_regex2.test(timesheetDate))) {
+                alert("Enter valid timesheet date.");
+                return false;
+            }
+        }
         var hoursValue = document.getElementById("<%=txtHours.ClientID%>").value;
         if (hoursValue != "") {
-            //hoursValue.match(/^-?\d*(\.\d+)?$/)
-            //isNumber(hoursValue)
             if (hoursValue.match(/^-?\d*(\.\d+)?$/)) {
 
                 if (hoursValue <= 0) {
@@ -87,6 +120,7 @@
             alert("Select Category.");
             return false;
         }
+
         return true;
     }
 </script>
