@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
-  <Module Name="ViewTimesheet" List="113" Url="_catalogs/wp">
-    <File Path="ViewTimesheet\ViewTimesheet.webpart" Url="TimesheetTracker_ViewTimesheet.webpart" Type="GhostableInLibrary" >
-      <Property Name="Group" Value="Custom" />
-    </File>
-  </Module>
-</Elements>

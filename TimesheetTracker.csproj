@@ -44,9 +44,27 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Extensions" />
@@ -54,18 +72,14 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\Common.cs" />
+    <Compile Include="Helper\Constants.cs" />
+    <Compile Include="Model\Timesheet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebPart\EditTimesheet\EditTimesheet.cs" />
-    <Compile Include="WebPart\EditTimesheet\EditTimesheetUserControl.ascx.cs">
-      <DependentUpon>EditTimesheetUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebPart\EditTimesheet\EditTimesheetUserControl.ascx.designer.cs">
-      <DependentUpon>EditTimesheetUserControl.ascx.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Repository\TimesheetRespository.cs" />
     <Compile Include="WebPart\ListTimesheet\ListTimesheet.cs" />
     <Compile Include="WebPart\ListTimesheet\ListTimesheetUserControl.ascx.cs">
       <DependentUpon>ListTimesheetUserControl.ascx</DependentUpon>
@@ -74,21 +88,13 @@
     <Compile Include="WebPart\ListTimesheet\ListTimesheetUserControl.ascx.designer.cs">
       <DependentUpon>ListTimesheetUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="WebPart\NewTimesheet\NewTimesheet.cs" />
-    <Compile Include="WebPart\NewTimesheet\NewTimesheetUserControl.ascx.cs">
-      <DependentUpon>NewTimesheetUserControl.ascx</DependentUpon>
+    <Compile Include="WebPart\ManageTimesheet\ManageTimesheet.cs" />
+    <Compile Include="WebPart\ManageTimesheet\ManageTimesheetUserControl.ascx.cs">
+      <DependentUpon>ManageTimesheetUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebPart\NewTimesheet\NewTimesheetUserControl.ascx.designer.cs">
-      <DependentUpon>NewTimesheetUserControl.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WebPart\ViewTimesheet\ViewTimesheet.cs" />
-    <Compile Include="WebPart\ViewTimesheet\ViewTimesheetUserControl.ascx.cs">
-      <DependentUpon>ViewTimesheetUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebPart\ViewTimesheet\ViewTimesheetUserControl.ascx.designer.cs">
-      <DependentUpon>ViewTimesheetUserControl.ascx.cs</DependentUpon>
+    <Compile Include="WebPart\ManageTimesheet\ManageTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>ManageTimesheetUserControl.ascx.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -134,22 +140,14 @@
     <None Include="Scripts\umd\popper.js.map" />
     <None Include="Scripts\umd\popper.min.js.map" />
     <None Include="TestPlan\TestPlan.xlsx" />
-    <None Include="WebPart\EditTimesheet\EditTimesheet.webpart" />
-    <None Include="WebPart\EditTimesheet\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{52cca91c-1018-417a-b2b2-d580ceb1be3e}</SharePointProjectItemId>
-    </None>
     <None Include="WebPart\ListTimesheet\ListTimesheet.webpart" />
     <None Include="WebPart\ListTimesheet\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{53cd9c44-9c4a-437b-aeaa-0c65c0484310}</SharePointProjectItemId>
     </None>
-    <None Include="WebPart\NewTimesheet\NewTimesheet.webpart" />
-    <None Include="WebPart\NewTimesheet\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{678162e1-c61b-41d3-9dad-1d91d384b853}</SharePointProjectItemId>
+    <None Include="WebPart\ManageTimesheet\ManageTimesheet.webpart" />
+    <None Include="WebPart\ManageTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6dddd459-ce7e-4731-9dbb-5d66fb543010}</SharePointProjectItemId>
     </None>
-    <None Include="WebPart\ViewTimesheet\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{5486c3ca-9e16-457f-91da-b94e51bb33e4}</SharePointProjectItemId>
-    </None>
-    <None Include="WebPart\ViewTimesheet\ViewTimesheet.webpart" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -250,14 +248,13 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="WebPart\EditTimesheet\EditTimesheetUserControl.ascx" />
-    <Content Include="WebPart\EditTimesheet\Elements.xml" />
     <Content Include="WebPart\ListTimesheet\Elements.xml" />
     <Content Include="WebPart\ListTimesheet\ListTimesheetUserControl.ascx" />
-    <Content Include="WebPart\NewTimesheet\Elements.xml" />
-    <Content Include="WebPart\NewTimesheet\NewTimesheetUserControl.ascx" />
-    <Content Include="WebPart\ViewTimesheet\Elements.xml" />
-    <Content Include="WebPart\ViewTimesheet\ViewTimesheetUserControl.ascx" />
+    <Content Include="WebPart\ManageTimesheet\Elements.xml" />
+    <Content Include="WebPart\ManageTimesheet\ManageTimesheetUserControl.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -11,15 +11,32 @@ Columns :
 
 2) Site collection level, feature named "TimesheetTracker Feature1" needs to be activated.
 
-3) Below pages needs to be created in site pages and add respected webparts:
+3) Below page needs to be created in site pages and add respected webpart and script:
 
--> EditTimesheet.aspx - Add "EditTimesheet" webpart in this page.
--> ViewTimesheet.aspx - Add "ViewTimesheet" webpart in this page.
--> NewTimesheet.aspx - Add "NewTimesheet" webpart in this page.
+-> Timesheet.aspx - Add "ManageTimesheet" webpart and below script in this page
 
-4) Home page of site should be "Home.aspx" and  "ListTimesheet" webpart needs to be added.
+======================================== Script Start =======================================================
 
-5) On site's navigation, create one navigation "Add Timesheet" and set its navigation to page "NewTimesheet.aspx"
+<script language="javascript">
+
+_spBodyOnLoadFunctionNames.push("HideBrandingsuite");
+
+function HideBrandingsuite()
+
+{
+
+document.getElementById('pageTitle').style.visibility = 'hidden';
+
+} 
+
+</script>
+
+======================================== Script End =======================================================
+
+
+4) Home page of site should be "Home.aspx" and "ListTimesheet" webpart needs to be added.
+
+5) On site's navigation, create one navigation "Add Timesheet" and set its navigation to page "Timesheet.aspx"
 
 6) Edit "Home.aspx" file, add html content editor webpart and add below script to get welcome user title.
 
@@ -80,19 +97,6 @@ document.getElementById('pageTitle').style.visibility = 'hidden';
 
 ======================================== Script End =======================================================
 
+7) In web.config file, define below key in app settings section for generating custom exception logs in file.
 
-7) Edit "EditTimesheet.aspx", "ViewTimesheet.aspx", "NewTimesheet.aspx" pages and add content web part. Add below script in content web part to hide page title.
-
-<script language="javascript">
-
-_spBodyOnLoadFunctionNames.push("HideBrandingsuite");
-
-function HideBrandingsuite()
-
-{
-
-document.getElementById('pageTitle').style.visibility = 'hidden';
-
-} 
-
-</script>
+<add key="LogFilePath" value="[Directory path where custom log file will be generated]" />

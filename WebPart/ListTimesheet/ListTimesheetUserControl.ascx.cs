@@ -3,6 +3,8 @@ using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TimesheetTracker.Helper;
+using TimesheetTracker.Repository;
 
 namespace TimesheetTracker.WebPart.ListTimesheet
 {
@@ -27,42 +29,48 @@ namespace TimesheetTracker.WebPart.ListTimesheet
             }
             catch (Exception ex)
             {
-                throw ex;
+                Common.HandleException(ex, SPContext.Current.Web.Url, "Page_Load", "ListTimesheetUserControl", SPContext.Current.Web.CurrentUser.Name);
             }
         }
 
 
         private void BindTimesheet()
         {
-            using (SPSite site = new SPSite(SPContext.Current.Site.Url))
+            try
             {
-                using (SPWeb web = site.OpenWeb())
+                using (SPSite site = new SPSite(SPContext.Current.Site.Url))
                 {
-                    SPList lstTimesheet = web.Lists["Timesheet"];
-                    if (lstTimesheet != null)
+                    using (SPWeb web = site.OpenWeb())
                     {
-                        SPQuery query = new SPQuery();
-                        query.Query = @"<Where><Eq><FieldRef Name='Author' LookupId='TRUE' /><Value Type='Integer'>" + SPContext.Current.Web.CurrentUser.ID + @"</Value></Eq></Where><OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
-
-                        SPListItemCollection itemColl = lstTimesheet.GetItems(query);
-                        if (itemColl != null && itemColl.Count > 0)
+                        SPList lstTimesheet = web.Lists[Constants.TimesheetListName];
+                        if (lstTimesheet != null)
                         {
-                            DataTable dtRecords = itemColl.GetDataTable();
-                            dtRecords.DefaultView.Sort = "TimesheetDate";
-                            gvTimesheet.DataSource = dtRecords.DefaultView.ToTable();
-                            gvTimesheet.DataBind();
+                            TimesheetRespository objRespository = new TimesheetRespository();
+                            SPListItemCollection itemColl = objRespository.GetListItemsByAuthor(lstTimesheet, SPContext.Current.Web.CurrentUser.ID);
+
+                            if (itemColl != null && itemColl.Count > 0)
+                            {
+                                DataTable dtRecords = itemColl.GetDataTable();
+                                dtRecords.DefaultView.Sort = "TimesheetDate";
+                                gvTimesheet.DataSource = dtRecords.DefaultView.ToTable();
+                                gvTimesheet.DataBind();
+                            }
+                            else
+                            {
+                                gvTimesheet.DataSource = null;
+                                gvTimesheet.DataBind();
+                            }
                         }
                         else
                         {
-                            gvTimesheet.DataSource = null;
-                            gvTimesheet.DataBind();
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notify", "alert('" + Constants.TimesheetListName + " list not found.');", true);
                         }
                     }
-                    else
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notify", "alert('Timesheet list not found.');", true);
-                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Common.HandleException(ex, SPContext.Current.Web.Url, "BindTimesheet", "ListTimesheetUserControl", SPContext.Current.Web.CurrentUser.Name);
             }
         }
         /// <summary>
@@ -72,33 +80,41 @@ namespace TimesheetTracker.WebPart.ListTimesheet
         /// <param name="e"></param>
         protected void gvTimesheet_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            try
             {
-                HyperLink lnkView = e.Row.FindControl("lnkView") as HyperLink;
-                if (lnkView != null)
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    lnkView.NavigateUrl = SPContext.Current.Site.Url + "/SitePages/ViewTimesheet.aspx?tid=" + DataBinder.Eval(e.Row.DataItem, "ID");
-                }
+                    HyperLink lnkView = e.Row.FindControl("lnkView") as HyperLink;
+                    if (lnkView != null)
+                    {
+                        lnkView.NavigateUrl = SPContext.Current.Site.Url + Constants.TimesheetPageUrl + "?op=r&tid=" + DataBinder.Eval(e.Row.DataItem, "ID");
+                    }
 
-                HyperLink lnkEdit = e.Row.FindControl("lnkEdit") as HyperLink;
-                if (lnkEdit != null)
-                {
-                    lnkEdit.NavigateUrl = SPContext.Current.Site.Url + "/SitePages/EditTimesheet.aspx?tid=" + DataBinder.Eval(e.Row.DataItem, "ID");
-                }
+                    HyperLink lnkEdit = e.Row.FindControl("lnkEdit") as HyperLink;
+                    if (lnkEdit != null)
+                    {
+                        lnkEdit.NavigateUrl = SPContext.Current.Site.Url + Constants.TimesheetPageUrl + "?op=e&tid=" + DataBinder.Eval(e.Row.DataItem, "ID");
+                    }
 
-                HyperLink lnkDelete = e.Row.FindControl("lnkDelete") as HyperLink;
-                if (lnkDelete != null)
-                {
-                    lnkDelete.NavigateUrl = SPContext.Current.Site.Url + "/SitePages/EditTimesheet.aspx?isdelete=true&tid=" + DataBinder.Eval(e.Row.DataItem, "ID");
-                }
+                    HyperLink lnkDelete = e.Row.FindControl("lnkDelete") as HyperLink;
+                    if (lnkDelete != null)
+                    {
+                        lnkDelete.NavigateUrl = SPContext.Current.Site.Url + Constants.TimesheetPageUrl + "?op=d&tid=" + DataBinder.Eval(e.Row.DataItem, "ID");
+                    }
 
-                Label lblDate = e.Row.FindControl("lblDate") as Label;
-                if (lblDate != null)
-                {
-                    DateTime dtDate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "TimesheetDate"));
-                    lblDate.Text = dtDate.ToString("yyyy-MM-dd");
+                    Label lblDate = e.Row.FindControl("lblDate") as Label;
+                    if (lblDate != null)
+                    {
+                        DateTime dtDate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "TimesheetDate"));
+                        lblDate.Text = dtDate.ToString("yyyy-MM-dd");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Common.HandleException(ex, SPContext.Current.Web.Url, "gvTimesheet_RowDataBound", "ListTimesheetUserControl", SPContext.Current.Web.CurrentUser.Name);
+            }
+
         }
 
 
@@ -116,7 +132,7 @@ namespace TimesheetTracker.WebPart.ListTimesheet
             }
             catch (Exception ex)
             {
-                throw ex;
+                Common.HandleException(ex, SPContext.Current.Web.Url, "gvTimesheet_PageIndexChanging", "ListTimesheetUserControl", SPContext.Current.Web.CurrentUser.Name);
             }
         }
     }

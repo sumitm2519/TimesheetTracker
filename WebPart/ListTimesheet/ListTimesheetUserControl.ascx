@@ -35,8 +35,9 @@
     <tr>
         <td>
             <asp:GridView CssClass="table table-responsive table-striped table-hover" ID="gvTimesheet" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvTimesheet_RowDataBound"
-                AllowPaging="true" OnPageIndexChanging="gvTimesheet_PageIndexChanging" PageSize="10">
+                AllowPaging="true" OnPageIndexChanging="gvTimesheet_PageIndexChanging" PageSize="10" ShowHeaderWhenEmpty="true">
                 <HeaderStyle CssClass="thead-dark" />
+                <EmptyDataTemplate>Timesheet Not Found</EmptyDataTemplate>
                 <Columns>
                     <asp:BoundField DataField="ID" Visible="false" />
                     <asp:TemplateField HeaderText="Timesheet Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">

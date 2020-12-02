@@ -2,12 +2,12 @@
 <webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="TimesheetTracker.WebPart.EditTimesheet.EditTimesheet, $SharePoint.Project.AssemblyFullName$" />
+      <type name="TimesheetTracker.WebPart.ManageTimesheet.ManageTimesheet, $SharePoint.Project.AssemblyFullName$" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">TimesheetTracker - EditTimesheet</property>
+        <property name="Title" type="string">TimesheetTracker - ManageTimesheet</property>
         <property name="Description" type="string">My Visual Web Part</property>
       </properties>
     </data>

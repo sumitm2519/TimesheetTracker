@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TimesheetTracker.WebPart.NewTimesheet
+namespace TimesheetTracker.WebPart.ManageTimesheet
 {
 
 
-    public partial class NewTimesheetUserControl
+    public partial class ManageTimesheetUserControl
     {
 
         /// <summary>
@@ -24,6 +24,15 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         protected global::System.Web.UI.WebControls.Label lblPageTitle;
 
         /// <summary>
+        /// lblMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMsg;
+
+        /// <summary>
         /// dtDate control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.SharePoint.WebControls.DateTimeControl dtDate;
+
+        /// <summary>
+        /// lblDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDate;
 
         /// <summary>
         /// txtHours control.
@@ -42,6 +60,15 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         protected global::System.Web.UI.WebControls.TextBox txtHours;
 
         /// <summary>
+        /// lblHours control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHours;
+
+        /// <summary>
         /// ddlCategory control.
         /// </summary>
         /// <remarks>
@@ -49,6 +76,15 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+
+        /// <summary>
+        /// lblCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCategory;
 
         /// <summary>
         /// txtDescription control.
@@ -60,6 +96,15 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
 
         /// <summary>
+        /// lblDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescription;
+
+        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>
@@ -67,6 +112,15 @@ namespace TimesheetTracker.WebPart.NewTimesheet
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSubmit;
+
+        /// <summary>
+        /// btnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnDelete;
 
         /// <summary>
         /// btnCancel control.
