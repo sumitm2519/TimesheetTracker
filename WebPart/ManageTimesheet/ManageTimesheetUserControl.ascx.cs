@@ -160,29 +160,39 @@ namespace TimesheetTracker.WebPart.ManageTimesheet
                 {
                     using (SPWeb web = site.OpenWeb())
                     {
-                        SPList lstTimesheet = web.Lists[Constants.TimesheetListName];
-                        if (lstTimesheet != null)
+                        bool allowUnsafeUpdate = web.AllowUnsafeUpdates;
+                        try
                         {
-                            Timesheet objTimesheet = new Timesheet()
-                            {
-                                ID = timesheetId,
-                                TimesheetDate = dtDate.SelectedDate,
-                                Category = ddlCategory.SelectedItem.Text,
-                                Description = txtDescription.Text.Trim(),
-                                Hours = Convert.ToDouble(txtHours.Text.Trim())
-                            };
+                            web.AllowUnsafeUpdates = true;
 
-                            TimesheetRespository objRepository = new TimesheetRespository();
-                            validHours = Common.ValidHours(lstTimesheet, dtDate.SelectedDate, Convert.ToDouble(txtHours.Text.Trim()), objTimesheet.ID, objRepository);
-                            if (validHours)
+                            SPList lstTimesheet = web.Lists[Constants.TimesheetListName];
+                            if (lstTimesheet != null)
                             {
-                                dataSave = objRepository.SaveTimesheet(lstTimesheet, objTimesheet);
+                                Timesheet objTimesheet = new Timesheet()
+                                {
+                                    ID = timesheetId,
+                                    TimesheetDate = dtDate.SelectedDate,
+                                    Category = ddlCategory.SelectedItem.Text,
+                                    Description = txtDescription.Text.Trim(),
+                                    Hours = Convert.ToDouble(txtHours.Text.Trim())
+                                };
+
+                                TimesheetRespository objRepository = new TimesheetRespository();
+                                validHours = Common.ValidHours(lstTimesheet, dtDate.SelectedDate, Convert.ToDouble(txtHours.Text.Trim()), objTimesheet.ID, objRepository);
+                                if (validHours)
+                                {
+                                    dataSave = objRepository.SaveTimesheet(lstTimesheet, objTimesheet);
+                                }
+                            }
+                            else
+                            {
+                                validHours = true;
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notify", "alert('" + Constants.TimesheetListName + " list not found.');", true);
                             }
                         }
-                        else
+                        finally
                         {
-                            validHours = true;
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Notify", "alert('" + Constants.TimesheetListName + " list not found.');", true);
+                            web.AllowUnsafeUpdates = allowUnsafeUpdate;
                         }
                     }
                 }
@@ -224,8 +234,17 @@ namespace TimesheetTracker.WebPart.ManageTimesheet
                 {
                     using (SPWeb web = site.OpenWeb())
                     {
-                        TimesheetRespository objRepository = new TimesheetRespository();
-                        dataSave = objRepository.DeleteListItemById(web, Constants.TimesheetListName, Convert.ToInt32(Request.QueryString["tid"]));
+                        bool allowUnsafeUpdate = web.AllowUnsafeUpdates;
+                        try
+                        {
+                            web.AllowUnsafeUpdates = true;
+                            TimesheetRespository objRepository = new TimesheetRespository();
+                            dataSave = objRepository.DeleteListItemById(web, Constants.TimesheetListName, Convert.ToInt32(Request.QueryString["tid"]));
+                        }
+                        finally
+                        {
+                            web.AllowUnsafeUpdates = allowUnsafeUpdate;
+                        }
                     }
                 }
 
