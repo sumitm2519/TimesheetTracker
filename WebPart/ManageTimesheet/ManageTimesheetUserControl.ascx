@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../../../../_layouts/15/TimesheetTracker/JS/ValidateTimesheetData.js"></script>
 
 <table>
     <tr>
@@ -83,51 +84,3 @@
         </td>
     </tr>
 </table>
-<script type="text/javascript">
-    function ValidateSubmit() {
-        var timesheetDate = $('input[id*="dtDate"]').val();
-        if (timesheetDate == '') {
-            alert("Enter timesheet date.");
-            return false;
-        }
-        else {
-            var date_regex1 = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-            var date_regex2 = /^([1-9]|1[0-2])\/([1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-            if (!(date_regex1.test(timesheetDate)) && !(date_regex2.test(timesheetDate))) {
-                alert("Enter valid timesheet date.");
-                return false;
-            }
-        }
-        var hoursValue = document.getElementById("<%=txtHours.ClientID%>").value;
-        if (hoursValue != "") {
-            if (hoursValue.match(/^-?\d*(\.\d+)?$/)) {
-
-                if (hoursValue <= 0) {
-                    alert("Enter valid hours.");
-                    return false;
-                }
-
-                if (hoursValue > 8) {
-                    alert("Timesheet hours should not be more than 8 hours.");
-                    return false;
-                }
-            }
-            else {
-                alert("Enter valid hours.");
-                return false;
-            }
-        }
-        else {
-            alert("Enter Timesheet hours.");
-            return false;
-        }
-
-        var category = document.getElementById("<%=ddlCategory.ClientID%>").value;
-        if (category == 0) {
-            alert("Select Category.");
-            return false;
-        }
-
-        return true;
-    }
-</script>

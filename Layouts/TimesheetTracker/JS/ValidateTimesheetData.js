@@ -12,7 +12,7 @@
             return false;
         }
     }
-    var hoursValue = document.getElementById("<%=txtHours.ClientID%>").value;
+    var hoursValue = $('input[id*="txtHours"]').val();
     if (hoursValue != "") {
         if (hoursValue.match(/^-?\d*(\.\d+)?$/)) {
 
@@ -36,7 +36,7 @@
         return false;
     }
 
-    var category = document.getElementById("<%=ddlCategory.ClientID%>").value;
+    var category = $('select[id*="ddlCategory"]').val();
     if (category == 0) {
         alert("Select Category.");
         return false;
