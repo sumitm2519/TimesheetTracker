@@ -298,8 +298,9 @@ namespace TimesheetTracker.WebPart.ManageTimesheet
                             if (itemColl != null && itemColl.Count > 0)
                             {
                                 DataTable dtRecords = itemColl.GetDataTable();
-                                dtRecords.DefaultView.Sort = "TimesheetDate";
-                                gvTimesheet.DataSource = dtRecords.DefaultView.ToTable();
+                                DataView view = new DataView(dtRecords.DefaultView.ToTable());
+                                view.Sort = "TimesheetDate Desc";
+                                gvTimesheet.DataSource = view.ToTable();
                                 gvTimesheet.DataBind();
                             }
                             else
