@@ -33,6 +33,42 @@ namespace TimesheetTracker.WebPart.ManageTimesheet
         protected global::System.Web.UI.WebControls.Label lblMsg;
 
         /// <summary>
+        /// trGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trGrid;
+
+        /// <summary>
+        /// lnkAddNew control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkAddNew;
+
+        /// <summary>
+        /// gvTimesheet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTimesheet;
+
+        /// <summary>
+        /// trForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trForm;
+
+        /// <summary>
         /// dtDate control.
         /// </summary>
         /// <remarks>
@@ -112,15 +148,6 @@ namespace TimesheetTracker.WebPart.ManageTimesheet
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSubmit;
-
-        /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDelete;
 
         /// <summary>
         /// btnCancel control.

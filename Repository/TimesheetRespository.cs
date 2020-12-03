@@ -1,15 +1,20 @@
 ﻿using Microsoft.SharePoint;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TimesheetTracker.Model;
 
 namespace TimesheetTracker.Repository
 {
+    /// <summary>
+    /// TimesheetRespository Class
+    /// </summary>
     public class TimesheetRespository
     {
+        /// <summary>
+        /// Add/Update Timesheet
+        /// </summary>
+        /// <param name="lstTimesheet"></param>
+        /// <param name="timesheet"></param>
+        /// <returns></returns>
         public bool SaveTimesheet(SPList lstTimesheet, Timesheet timesheet)
         {
             SPListItem item = null;
@@ -30,6 +35,12 @@ namespace TimesheetTracker.Repository
             return true;
         }
 
+        /// <summary>
+        /// Get items by author
+        /// </summary>
+        /// <param name="lst"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public SPListItemCollection GetListItemsByAuthor(SPList lst, int userId)
         {
             SPQuery query = new SPQuery();
@@ -38,6 +49,13 @@ namespace TimesheetTracker.Repository
             return lst.GetItems(query);
         }
 
+        /// <summary>
+        /// Get list item by id
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="listName"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
         public SPListItem GetListItemById(SPWeb web, string listName, int itemId)
         {
             SPListItem item = null;
@@ -49,6 +67,13 @@ namespace TimesheetTracker.Repository
             return item;
         }
 
+        /// <summary>
+        /// Delete list item by id
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="listName"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
         public bool DeleteListItemById(SPWeb web, string listName, int itemId)
         {
             bool isDelete = false; ;
@@ -65,6 +90,13 @@ namespace TimesheetTracker.Repository
             return isDelete;
         }
 
+        /// <summary>
+        /// Get timesheet data by user and timesheet date
+        /// </summary>
+        /// <param name="lst"></param>
+        /// <param name="userId"></param>
+        /// <param name="timesheetDate"></param>
+        /// <returns></returns>
         public SPListItemCollection GetTimesheetsByUserAndDate(SPList lst, int userId, DateTime timesheetDate)
         {
             SPQuery query = new SPQuery();

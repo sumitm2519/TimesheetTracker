@@ -1,7 +1,7 @@
 ﻿using Microsoft.SharePoint;
 using System;
-using System.IO;
 using System.Configuration;
+using System.IO;
 using TimesheetTracker.Repository;
 
 namespace TimesheetTracker.Helper
@@ -19,9 +19,10 @@ namespace TimesheetTracker.Helper
         /// Validate timesheet hours - should not be greater than 8 per day
         /// </summary>
         /// <param name="list"></param>
-        /// <param name="enteredDate"></param>
+        /// <param name="timesheetDate"></param>
         /// <param name="enteredHours"></param>
         /// <param name="timesheetId"></param>
+        /// <param name="objRepository"></param>
         /// <returns></returns>
         public static bool ValidHours(SPList list, DateTime timesheetDate, double enteredHours, int timesheetId, TimesheetRespository objRepository)
         {
@@ -102,7 +103,7 @@ namespace TimesheetTracker.Helper
                     }
                 });
             }
-            catch (Exception exLog)
+            catch (Exception)
             {
                 writerForErrLog.Close();
             }

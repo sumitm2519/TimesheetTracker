@@ -1,4 +1,41 @@
-﻿function ValidateSubmit() {
+﻿$(document).ready(function () {
+
+    var userid = _spPageContextInfo.userId;
+
+    function GetCurrentUser() {
+        var requestUri = _spPageContextInfo.webAbsoluteUrl + "/_api/web/getuserbyid(" + userid + ")";
+
+        var requestHeaders = { "accept": "application/json;odata=verbose" };
+
+        $.ajax({
+            url: requestUri,
+            contentType: "application/json;odata=verbose",
+            headers: requestHeaders,
+            success: onSuccess,
+            error: onError
+        });
+    }
+
+    function onSuccess(data, request) {
+        var loginName = data.d.Title;
+
+        document.getElementById("lblUsername").innerText = loginName;
+
+    }
+
+    function onError(error) {
+        alert(error);
+    }
+
+    GetCurrentUser();
+
+});
+
+_spBodyOnLoadFunctionNames.push("HideBrandingsuite");
+function HideBrandingsuite() {
+    document.getElementById('pageTitle').style.visibility = 'hidden';
+}
+function ValidateSubmit() {
     var timesheetDate = $('input[id*="dtDate"]').val();
     if (timesheetDate == '') {
         alert("Enter timesheet date.");
@@ -43,4 +80,11 @@
     }
 
     return true;
+}
+
+function ConfirmDeletion() {
+    if (confirm("Are you sure you want to delete timesheet entry?"))
+        return true;
+    else
+        return false;
 }
